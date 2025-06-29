@@ -1,6 +1,5 @@
 'use client';
 import { useState } from 'react';
-import Button from './Button';
 
 export default function AIAssistant() {
   const [topic, setTopic] = useState('');
@@ -117,13 +116,6 @@ export default function AIAssistant() {
         >
           {isLoading ? 'Expanding...' : 'Expand Text'}
         </button>
-        <Button
-          onClick={expandText}
-          disabled={isLoading || !selectedText.trim()}
-          className="mt-2 w-full text-sm font-medium hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed"
-        >
-          {isLoading ? 'Expanding...' : 'Expand Text'}
-        </Button>
 
         {expandedText && (
           <div className="mt-3 p-3 bg-green-50 border border-green-200 rounded text-sm">
