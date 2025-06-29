@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import Button from './Button';
 
 export default function AIAssistant() {
   const [topic, setTopic] = useState('');
@@ -69,7 +70,7 @@ export default function AIAssistant() {
             value={topic}
             onChange={(e) => setTopic(e.target.value)}
             placeholder="Enter topic..."
-            className="flex-1 px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="flex-1 px-3 py-2 border border-gray-300 rounded-md text-sm text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
             onKeyPress={(e) => e.key === 'Enter' && generateTitles()}
           />
           <button
@@ -86,7 +87,7 @@ export default function AIAssistant() {
             {titles.map((title, index) => (
               <div
                 key={index}
-                className="p-2 bg-gray-50 rounded text-sm cursor-pointer hover:bg-gray-100"
+                className="p-2 bg-gray-50 rounded text-sm text-gray-400 hover:text-black cursor-pointer hover:bg-gray-100 transition-colors duration-300"
                 onClick={() => navigator.clipboard.writeText(title)}
                 title="Click to copy"
               >
@@ -116,6 +117,13 @@ export default function AIAssistant() {
         >
           {isLoading ? 'Expanding...' : 'Expand Text'}
         </button>
+        <Button
+          onClick={expandText}
+          disabled={isLoading || !selectedText.trim()}
+          className="mt-2 w-full text-sm font-medium hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          {isLoading ? 'Expanding...' : 'Expand Text'}
+        </Button>
 
         {expandedText && (
           <div className="mt-3 p-3 bg-green-50 border border-green-200 rounded text-sm">

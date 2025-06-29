@@ -1,6 +1,8 @@
 'use client';
 import { storyblokEditable, StoryblokComponent } from '@storyblok/react';
-import { renderRichText } from '@storyblok/richtext';
+import { richTextResolver } from '@storyblok/richtext';
+
+const { render } = richTextResolver();
 
 export default function BlogPost({ story }) {
   const { content } = story;
@@ -83,7 +85,7 @@ export default function BlogPost({ story }) {
         {content.content && (
           <div
             dangerouslySetInnerHTML={{
-              __html: renderRichText(content.content),
+              __html: render(content.content),
             }}
             className="blog-content"
           />

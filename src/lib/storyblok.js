@@ -1,6 +1,14 @@
-import { getStoryblokApi } from '@storyblok/react';
+import { apiPlugin, storyblokInit } from '@storyblok/react/rsc';
 
-export const storyblokApi = getStoryblokApi();
+export const getStoryblokApi = storyblokInit({
+  accessToken: process.env.NEXT_PUBLIC_STORYBLOK_ACCESS_TOKEN,
+  use: [apiPlugin],
+  apiOptions: {
+    region: 'eu',
+  },
+});
+
+const storyblokApi = getStoryblokApi();
 
 export async function getStoryblokData(slug, preview = false) {
   const version = preview ? 'draft' : 'published';
